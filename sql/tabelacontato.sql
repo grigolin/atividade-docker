@@ -9,6 +9,5 @@ CREATE TABLE contato
 ) ENGINE = InnoDB;
 
 INSERT INTO contato (nome, email, mensagem) VALUES
-('Guilherme', 'asd@example.com', 'Olá'),
 ('Teste', 'bca@example.com', 'Oi.'),
 ('Carla', 'a@example.com', 'Ah.');
