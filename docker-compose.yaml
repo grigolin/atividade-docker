@@ -1,0 +1,30 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:80"
+    depends_on:
+      - servicebd
+
+  servicebd:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: atvdocker
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./sql/tabelacontato.sql:/docker-entrypoint-initdb.d/tabelacontato.sql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: servicebd
+      MYSQL_ROOT_PASSWORD: pass
+    depends_on:
+      - servicebd
